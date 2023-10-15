@@ -16,6 +16,7 @@ export class OrdersService {
     // const AreaTokenHeader = { headers: this.headers }
     let fd = ''
     let td = ''
+    console.log(typeof status);
 
     if(fromDate && toDate){
       fd = format(fromDate, 'yyyy/MM/dd');

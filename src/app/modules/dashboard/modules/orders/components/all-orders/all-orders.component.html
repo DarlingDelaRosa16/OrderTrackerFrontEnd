@@ -15,8 +15,8 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Estado</mat-label>
-      <mat-select disableRipple formControlName="status" >
-        <mat-option [value]="">Todos</mat-option>
+      <mat-select disableRipple formControlName="status">
+        <mat-option [value]="0">Todos</mat-option>
         <mat-option [value]="1">Completada</mat-option>
         <mat-option [value]="2">Pendiente</mat-option>
         <mat-option [value]="3">Cancelada</mat-option>

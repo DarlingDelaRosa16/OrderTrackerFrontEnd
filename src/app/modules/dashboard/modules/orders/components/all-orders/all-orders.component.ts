@@ -25,7 +25,7 @@ export class AllOrdersComponent implements OnInit{
   ) {
     this.formFilter = this.fb.group({
       searchValue: new FormControl(''),
-      status: new FormControl(''),
+      status: new FormControl(0),
       fromDate: new FormControl(''),
       toDate: new FormControl(''),
     })

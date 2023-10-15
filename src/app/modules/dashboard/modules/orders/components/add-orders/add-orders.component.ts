@@ -43,8 +43,6 @@ export class AddOrdersComponent implements OnInit {
         orderstatusid: this.order.item.statusId
       })
     }
-    console.log(this.formNewOrder.value);
-
   }
 
   closeModal() { this.dialogRef.close() }
