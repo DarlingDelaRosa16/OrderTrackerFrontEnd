@@ -1,0 +1,89 @@
+<div class="viewContent">
+
+  <div class="fuctionContent">
+    <h1>Ordenes</h1>
+    <button mat-stroked-button (click)="openModal(null)">Crear orden</button>
+  </div>
+
+  <div class="filtrarContent" [formGroup]="formFilter"><!---->
+
+    <mat-form-field appearance="fill">
+      <mat-label>Filtrar</mat-label>
+      <input matInput  formControlName="searchValue"> <!---->
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>&nbsp;
+
+    <mat-form-field appearance="fill">
+      <mat-label>Estado</mat-label>
+      <mat-select disableRipple formControlName="status" >
+        <mat-option [value]="">Todos</mat-option>
+        <mat-option [value]="1">Completada</mat-option>
+        <mat-option [value]="2">Pendiente</mat-option>
+        <mat-option [value]="3">Cancelada</mat-option>
+      </mat-select>
+    </mat-form-field>&nbsp;
+
+    <mat-form-field>
+      <mat-label>Enter a date range</mat-label>
+      <mat-date-range-input [rangePicker]="picker" (dateChange)="getAllOrders()" >
+        <input matStartDate formControlName="fromDate" placeholder="Fecha Inicial">
+        <input matEndDate formControlName="toDate" placeholder="Fecha Final">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+
+      <!-- <mat-error *ngIf="formDate.controls['fromDate'].hasError('matStartDateInvalid')">Invalid start date</mat-error>
+      <mat-error *ngIf="formDate.controls['toDate'].hasError('matEndDateInvalid')">Invalid end date</mat-error> -->
+    </mat-form-field>
+
+  </div>
+  <div>
+    <table>
+      <thead class="headerTable">
+        <tr class="headerRow">
+          <th class="headerCell">Numero de orden</th>
+          <th class="headerCell">Fecha</th>
+          <th class="headerCell">Nombre</th>
+          <th class="headerCell">Estado</th>
+          <th class="headerCell">Descripcion</th>
+          <th class="headerCell">Primer pago</th>
+          <th class="headerCell">Pago restante</th>
+          <th class="headerCell">Precio</th>
+          <th class="fuctionCell"></th>
+          <th class="fuctionCell"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="dataRow" *ngFor="let item of allOrderList">
+          <td class="dataCell">{{item.orderId}}</td><!--{{item.razonSocial}}-->
+          <td class="dataCell">{{item.created | date: 'dd/MM/yyyy'}}</td><!--{{item.rnc}}-->
+          <td class="dataCell">{{item.customerName}}</td><!--{{item.nombreComercial}}-->
+          <td class="dataCell">{{item.statusName}}</td><!--{{item.nombreComercial}}-->
+          <td class="dataCell">{{item.description}}</td><!--{{item.representante}}-->
+          <td class="dataCell">{{item.firstPayment | currency: '': 'symbol': '1.2-2'}}</td> <!--{{item.telRepresentante}}-->
+          <td class="dataCell">{{item.totalLeft | currency: '': 'symbol': '1.2-2'}}</td><!--{{item.telRepresentante}}-->
+          <td class="dataCell">{{item.price | currency: '': 'symbol': '1.2-2'}}</td><!--{{item.telRepresentante}}-->
+          <td class="dataCell"> <button class="fucEdit"
+              (click)="openModal(item)"><mat-icon>edit</mat-icon></button><!--(click)="openModal(item)"-->
+          </td>
+          <td class="dataCell"> <button class="fucRem"><mat-icon
+                (click)="removeAlert(item.orderId)">delete</mat-icon></button></td><!---->
+        </tr>
+      </tbody>
+
+    </table>
+
+    <div class="noDataRow" *ngIf="allOrderList.length == 0 "><!--&& loading == false;-->
+      <h1 class="msNoData"> No se encontraron datos para mostrar <mat-icon class="noDataIcon">info_outline</mat-icon>
+      </h1>
+    </div>
+
+    <div class="pagination">
+      <button class="btnPag" (click)="previousPage()"> <mat-icon>keyboard_arrow_left</mat-icon> </button> <!---->
+      <div style="display: grid; place-items: center;">{{pagina}}/{{noPage}}</div> <!--{{pagina}}/{{noPage}}-->
+      <button class="btnPag" (click)="nextPage()"> <mat-icon>keyboard_arrow_right</mat-icon></button><!---->
+    </div>
+
+  </div>
+
+</div>

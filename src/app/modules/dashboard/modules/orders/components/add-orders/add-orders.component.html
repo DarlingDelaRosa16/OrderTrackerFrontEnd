@@ -1,0 +1,47 @@
+<div class="modal">
+
+  <h2 *ngIf="order.item == null;else edit" class="modal-title" mat-dialog-title> Nueva Orden </h2>
+  <ng-template #edit>
+    <h2  class="modal-title" mat-dialog-title> Editar Orden </h2>
+  </ng-template>
+
+  <mat-dialog-content class="modal-content">
+    <div class="formInfo" [formGroup]="formNewOrder"> <!-- -->
+
+      <mat-form-field hideRequiredMarker appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input matInput required formControlName="name">
+        <!--(keydown.enter)="findByCodeProduct()"-->
+      </mat-form-field>&nbsp;
+
+      <mat-form-field hideRequiredMarker appearance="fill">
+        <mat-label>Descripcion</mat-label>
+        <input matInput required formControlName="description">
+      </mat-form-field>&nbsp;
+
+      <mat-form-field hideRequiredMarker appearance="fill">
+        <mat-label>Precio</mat-label>
+        <input type="number" matInput required formControlName="price">
+      </mat-form-field>&nbsp;
+
+      <mat-form-field hideRequiredMarker appearance="fill">
+        <mat-label>Monto pagado</mat-label>
+        <input type="number" matInput required formControlName="firstPayment">
+      </mat-form-field>&nbsp;
+
+      <mat-form-field appearance="fill" *ngIf="order.item != null">
+        <mat-label>Estado</mat-label>
+        <mat-select disableRipple formControlName="orderstatusid"> <!--(selectionChange)="selectedEdificio($event.value)"-->
+            <mat-option [value]="1">Completada</mat-option>
+            <mat-option [value]="2">Pendiente</mat-option>
+            <mat-option [value]="3">Cancelada</mat-option>
+        </mat-select>
+      </mat-form-field>&nbsp;
+
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions class="form-actions">
+    <button mat-stroked-button class="btnCancel" (click)="closeModal()" color="warn">Cancelar</button>
+    <button mat-stroked-button class="btnSend" (click)="sendData()" color="primary"><mat-icon>send</mat-icon>Enviar</button><!--(click)="editData()"-->
+  </mat-dialog-actions>
+</div>

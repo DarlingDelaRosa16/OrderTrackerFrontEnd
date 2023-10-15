@@ -1,0 +1,36 @@
+<div class="appWrapper">
+  <mat-sidenav-container>
+    <mat-sidenav mode="side" [(opened)]="sidenavOpened">
+
+      <div class="logoTrackerContainer">
+        <h3 style="margin: 0;">logo</h3>
+      </div>
+
+      <div class="trackerOptions">
+        <a class="item-menu" [routerLink]="['/dashboard/orders']" routerLinkActive="active">
+          <mat-icon>checklist</mat-icon>Ordenes
+        </a>
+      </div>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div class="routerContent">
+
+        <mat-toolbar class="navbar">
+
+          <div class="btnMenuContainer">
+            <button class="btnMenu" (click)="sidenavOpened = !sidenavOpened"><mat-icon>menu</mat-icon></button>&nbsp;
+            <h2 style="font-weight: 300;">TrakerOrder</h2>
+          </div>
+
+        </mat-toolbar>
+
+        <router-outlet></router-outlet>
+
+      </div>
+
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
