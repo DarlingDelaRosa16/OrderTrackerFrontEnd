@@ -26,6 +26,9 @@ export class AddOrdersComponent implements OnInit {
       price: new FormControl('', Validators.required),
       firstPayment: new FormControl('', Validators.required),
       name: new FormControl('', Validators.required),
+      phone: new FormControl(''),
+      email: new FormControl(''),
+      address: new FormControl(''),
       customerId: new FormControl(''),
       orderstatusid: new FormControl(''),
     })
@@ -40,6 +43,9 @@ export class AddOrdersComponent implements OnInit {
         firstPayment: this.order.item.firstPayment,
         customerId: this.order.item.customerId,
         name: this.order.item.customerName,
+        email: this.order.item.email,
+        phone: this.order.item.phone,
+        address: this.order.item.address,
         orderstatusid: this.order.item.statusId
       })
     }

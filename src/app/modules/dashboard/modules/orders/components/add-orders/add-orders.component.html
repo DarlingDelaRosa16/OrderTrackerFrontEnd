@@ -29,6 +29,22 @@
         <input type="number" matInput required formControlName="firstPayment">
       </mat-form-field>&nbsp;
 
+      
+      <mat-form-field hideRequiredMarker appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput  formControlName="email">
+      </mat-form-field>&nbsp;
+
+      <mat-form-field hideRequiredMarker appearance="fill">
+        <mat-label>Telefono</mat-label>
+        <input matInput  formControlName="phone">
+      </mat-form-field>&nbsp;
+
+      <mat-form-field hideRequiredMarker appearance="fill">
+        <mat-label>Direccion</mat-label>
+        <input matInput  formControlName="address">
+      </mat-form-field>&nbsp;
+
       <mat-form-field appearance="fill" *ngIf="order.item != null">
         <mat-label>Estado</mat-label>
         <mat-select disableRipple formControlName="orderstatusid"> <!--(selectionChange)="selectedEdificio($event.value)"-->

@@ -30,7 +30,10 @@ export class AllOrdersComponent implements OnInit{
       toDate: new FormControl(''),
     })
 
-    this.formFilter.valueChanges.subscribe(() => { this.getAllOrders()})
+    this.formFilter.valueChanges.subscribe(() => {
+      this.pagina = 1;
+      this.getAllOrders()
+    })
   }
 
   ngOnInit(): void {
