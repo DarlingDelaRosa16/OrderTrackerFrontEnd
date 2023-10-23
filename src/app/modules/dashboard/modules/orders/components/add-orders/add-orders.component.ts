@@ -13,6 +13,8 @@ import { catchError, throwError } from 'rxjs';
 export class AddOrdersComponent implements OnInit {
 
   formNewOrder: FormGroup;
+  token = localStorage.getItem('token')
+
 
   constructor(
     public fb: FormBuilder,
@@ -49,14 +51,14 @@ export class AddOrdersComponent implements OnInit {
 
   sendData() {
 
-    if (this.formNewOrder.valid) {
+    if (this.formNewOrder.valid && this.token != null) {
 
-      if (this.order.item == null) {
+      if (this.order.item == null ) {
 
-        this.orderService.postOrders(this.formNewOrder.value)
+        this.orderService.postOrders(this.formNewOrder.value, this.token)
           .pipe(catchError((error) => {
             alertServerDown()
-            return error
+            return throwError(error)
           }))
           .subscribe((res: any) => {
             if (res != null) {
@@ -68,7 +70,7 @@ export class AddOrdersComponent implements OnInit {
           })
 
       } else {
-        this.orderService.putOrders(this.formNewOrder.value)
+        this.orderService.putOrders(this.formNewOrder.value, this.token)
           .pipe(catchError((error) => {
             alertServerDown()
             return throwError(error)

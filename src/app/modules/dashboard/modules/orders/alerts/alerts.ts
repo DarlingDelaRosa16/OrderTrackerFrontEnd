@@ -62,3 +62,12 @@ export function alertRemoveSuccess() {
     timer: 2000
   })
 }
+
+export function alerUserWrong() {
+  Swal.fire({
+    icon: 'error',
+    title: 'Usuario o constraseña incorrectos.',
+    showConfirmButton: false,
+    timer: 2000
+  })
+}

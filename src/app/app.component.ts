@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'order-traker-app';
+
+  constructor(){
+    console.log(localStorage.getItem('token'));
+
+  }
+
 }

@@ -20,8 +20,13 @@
         <mat-toolbar class="navbar">
 
           <div class="btnMenuContainer">
-            <button class="btnMenu" (click)="sidenavOpened = !sidenavOpened"><mat-icon>menu</mat-icon></button>&nbsp;
-            <h2 style="font-weight: 300;">TrakerOrder</h2>
+            <span style="display: flex;">
+              <button class="btnMenu" (click)="sidenavOpened = !sidenavOpened"><mat-icon>menu</mat-icon></button>&nbsp;
+              <h2 style="font-weight: 300;">TrakerOrder</h2>
+            </span>
+
+            <button mat-stroked-button color="warn" (click)="logOut()"><mat-icon>logout</mat-icon> cerrar sesión</button>
+
           </div>
 
         </mat-toolbar>

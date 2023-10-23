@@ -9,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatOptionModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatCardModule} from '@angular/material/card';
 
 
 const materialComponents: any = [
@@ -21,7 +22,8 @@ const materialComponents: any = [
   MatFormFieldModule,
   MatOptionModule,
   MatDialogModule,
-  MatDatepickerModule
+  MatDatepickerModule,
+  MatCardModule,
 ]
 
 @NgModule({

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'dash-root',
@@ -8,5 +9,14 @@ import { Component } from '@angular/core';
 export class dashboardComponent {
 
   sidenavOpened: boolean = false;
+
+  constructor(
+    private router: Router,
+  ){}
+
+  logOut(){
+    localStorage.clear()
+    this.router.navigate(['/']);
+  }
 
 }

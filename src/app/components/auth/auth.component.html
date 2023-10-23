@@ -1,0 +1,33 @@
+<div class="authContent">
+
+  <div class="cardsComponent">
+
+   <!-- <div>
+    LOGO
+     <img src="../../../assets/SIGEBILogoBlanco.png" alt="Sistema de gestión de bienes">
+   </div> -->
+
+    <mat-card class="logInCard">
+      <mat-card-title class="titleLogIn">Bienvenido</mat-card-title>
+      <mat-card-content>
+        <div [formGroup]="formUserLogIn">
+          <mat-form-field hideRequiredMarker appearance="fill" class="inputLogIn">
+            <mat-label>Usuario</mat-label>
+            <input matInput required formControlName="username">
+            <mat-icon matSuffix>person</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field hideRequiredMarker appearance="fill" class="inputLogIn">
+            <mat-label>Contraseña:</mat-label>
+            <input [type]="seePass" matInput required formControlName="password">
+            <mat-icon style="cursor: pointer;" matSuffix (click)="seePassword()">visibility</mat-icon>
+          </mat-form-field>
+
+          <mat-card-actions align="end">
+            <button mat-raised-button class="logIn" (click)="logIn()" >Iniciar Sesion</button>
+          </mat-card-actions>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

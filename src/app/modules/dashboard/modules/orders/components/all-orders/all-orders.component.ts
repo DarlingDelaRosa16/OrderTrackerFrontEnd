@@ -11,12 +11,13 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
   templateUrl: './all-orders.component.html',
   styleUrls: ['./all-orders.component.css']
 })
-export class AllOrdersComponent implements OnInit{
+export class AllOrdersComponent implements OnInit {
 
   allOrderList: any[] = []
   pagina: number = 1
   noPage: number = 1
   formFilter: FormGroup;
+  token = localStorage.getItem('token')
 
   constructor(
     public fb: FormBuilder,
@@ -30,33 +31,34 @@ export class AllOrdersComponent implements OnInit{
       toDate: new FormControl(''),
     })
 
-    this.formFilter.valueChanges.subscribe(() => { this.getAllOrders()})
+    this.formFilter.valueChanges.subscribe(() => { this.getAllOrders() })
   }
 
   ngOnInit(): void {
     this.getAllOrders()
   }
 
-  getAllOrders(){
-    const {searchValue, fromDate, toDate, status} = this.formFilter.value
-
-    this.orderService.getOrders(searchValue, fromDate, toDate, status, 10, this.pagina)
-    .pipe(
-      catchError((error)=>{
-        alertServerDown()
-        return throwError(error)
-      })
-    )
-    .subscribe((res:any)=>{
-      this.allOrderList = res.items
-      this.noPage = res.totalPages
-    })
+  getAllOrders() {
+    const { searchValue, fromDate, toDate, status } = this.formFilter.value
+    if (this.token != null) {
+      this.orderService.getOrders(searchValue, fromDate, toDate, status, 10, this.pagina, this.token)
+        .pipe(
+          catchError((error) => {
+            alertServerDown()
+            return throwError(error)
+          })
+        )
+        .subscribe((res: any) => {
+          this.allOrderList = res.items
+          this.noPage = res.totalPages
+        })
+    }
   }
 
-  openModal(item: any) { //detailId: number
+  openModal(item: any) {
     console.log(item);
 
-    let dialogRef = this.dialog.open(AddOrdersComponent, { data: {item}}) //{ data: detailId }
+    let dialogRef = this.dialog.open(AddOrdersComponent, { data: { item } }) //{ data: detailId }
     dialogRef.afterClosed().subscribe(() => {
       this.getAllOrders()
     })
@@ -65,23 +67,23 @@ export class AllOrdersComponent implements OnInit{
   async removeAlert(item: number) {
     let removeChoise: boolean = await alertRemoveSure()
 
-    if(removeChoise){
-      this.orderService.deleteOrders(item)
-      .pipe(
-        catchError((error)=>{
-          alertServerDown()
-          return throwError(error)
+    if (removeChoise && this.token != null) {
+      this.orderService.deleteOrders(item, this.token)
+        .pipe(
+          catchError((error) => {
+            alertServerDown()
+            return throwError(error)
+          })
+        )
+        .subscribe((res: any) => {
+          if (res != null) {
+            alertRemoveSuccess()
+            this.getAllOrders()
+          } else {
+            alertIsSuccess(false)
+          }
         })
-      )
-      .subscribe((res: any)=>{
-        if(res!= null){
-          alertRemoveSuccess()
-          this.getAllOrders()
-        }else{
-          alertIsSuccess(false)
-        }
-      })
-}
+    }
   }
 
   nextPage() {
