@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { format } from 'date-fns';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -9,7 +10,7 @@ import { format } from 'date-fns';
 
 export class OrdersService {
 
-  baseUrl = "https://localhost:7294/api"
+  baseUrl = environment.domain
 
   constructor(private http: HttpClient) {}
 
