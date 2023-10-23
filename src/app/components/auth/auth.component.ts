@@ -33,8 +33,6 @@ export class AuthComponent {
   }
 
   logIn() {
-    console.log(this.formUserLogIn.value);
-
     if (this.formUserLogIn.valid) {
 
       this.api.logIn(this.formUserLogIn.value)
