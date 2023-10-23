@@ -18,9 +18,13 @@ export class OrdersService {
 
     let fd = ''
     let td = ''
+<<<<<<< HEAD
     console.log(typeof status);
 
     if (fromDate && toDate) {
+=======
+    if(fromDate && toDate){
+>>>>>>> da05dea4e6249b58e270113ed08aa5780a512544
       fd = format(fromDate, 'yyyy/MM/dd');
       td = format(toDate, 'yyyy/MM/dd');
     }

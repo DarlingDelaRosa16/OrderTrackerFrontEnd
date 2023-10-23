@@ -46,6 +46,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .btnMenuContainer .btnMenu {
   background-color: transparent;
   border: none;
+  cursor: pointer;
 }
 
 mat-sidenav-container {
