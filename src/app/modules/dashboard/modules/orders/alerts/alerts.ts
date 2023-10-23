@@ -71,3 +71,25 @@ export function alerUserWrong() {
     timer: 2000
   })
 }
+
+export function alertLogOut(): Promise<boolean> {
+  return new Promise((resolve) => {
+    Swal.fire({
+      title: '¡Alerta!',
+      text: 'Estas seguro que deseas cerrar la sesión.',
+      icon: 'warning',
+      confirmButtonText: 'Aceptar',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#004b8d',
+      cancelButtonColor: '#aaa',
+    }).then((result) => {
+
+      if (result.isConfirmed) {
+        resolve(true)
+      } else {
+        resolve(false)
+      }
+    });
+  })
+}

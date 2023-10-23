@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { alertLogOut } from './modules/orders/alerts/alerts';
 
 @Component({
   selector: 'dash-root',
@@ -12,11 +13,16 @@ export class dashboardComponent {
 
   constructor(
     private router: Router,
-  ){}
+  ) { }
 
-  logOut(){
-    localStorage.clear()
-    this.router.navigate(['/']);
+  async logOut() {
+    let closeAccount: boolean = await alertLogOut()
+
+    if (closeAccount) {
+      localStorage.clear()
+      this.router.navigate(['/']);
+    }
+
   }
 
 }
